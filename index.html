@@ -225,42 +225,81 @@ footer a:hover{color:var(--amber);}
 </div>
 
 <script>
-window.addEventListener('message', function(e) {
-  if (typeof e.data === 'object' && e.data.event === 'Tally.FormSubmitted') {
-    var fields = e.data.payload && e.data.payload.fields ? e.data.payload.fields : [];
-    var disqualified = false;
+function handleTallySubmission(fields) {
+  var disqualified = false;
 
-    fields.forEach(function(field) {
-      var val = (field.value || '').toString().toLowerCase();
-      var label = (field.label || '').toString().toLowerCase();
-      if (
-        label.indexOf('invest') !== -1 ||
-        label.indexOf('budget') !== -1 ||
-        label.indexOf('spend') !== -1 ||
-        label.indexOf('willing') !== -1
-      ) {
-        if (
-          val.indexOf('300') !== -1 ||
-          val.indexOf('700') !== -1 ||
-          val.indexOf('300-700') !== -1 ||
-          val === '300' || val === '500' || val === '700'
-        ) {
-          disqualified = true;
-        }
-      }
-    });
+  // Check every field for the disqualifying investment answer
+  fields.forEach(function(field) {
+    var label = (field.label || field.title || field.question || '').toString().toLowerCase();
+    var value = '';
 
-    document.getElementById('tally-form-wrap').style.display = 'none';
-
-    if (disqualified) {
-      document.getElementById('tally-denied').style.display = 'block';
-      gtag('event', 'form_disqualified', {'event_category': 'Form', 'event_label': 'investment_too_low'});
-    } else {
-      document.getElementById('tally-approved').style.display = 'block';
-      document.getElementById('booking').style.display = 'block';
-      gtag('event', 'form_qualified', {'event_category': 'Form', 'event_label': 'passed'});
-      fbq('track', 'Lead');
+    // Handle different value formats Tally uses
+    if (typeof field.value === 'string') {
+      value = field.value.toLowerCase();
+    } else if (Array.isArray(field.value)) {
+      value = field.value.join(' ').toLowerCase();
+    } else if (field.answer) {
+      value = field.answer.toString().toLowerCase();
     }
+
+    // Check if this is the investment question
+    var isInvestmentField = (
+      label.indexOf('invest') !== -1 ||
+      label.indexOf('budget') !== -1 ||
+      label.indexOf('willing') !== -1 ||
+      label.indexOf('spend') !== -1 ||
+      label.indexOf('money') !== -1 ||
+      label.indexOf('afford') !== -1
+    );
+
+    // Check if the value is the disqualifying low range
+    if (isInvestmentField) {
+      if (
+        value.indexOf('300') !== -1 ||
+        value.indexOf('700') !== -1 ||
+        value === 'less than' ||
+        value.indexOf('under 1000') !== -1 ||
+        value.indexOf('under $1000') !== -1
+      ) {
+        disqualified = true;
+      }
+    }
+  });
+
+  // Hide the form
+  document.getElementById('tally-form-wrap').style.display = 'none';
+
+  if (disqualified) {
+    document.getElementById('tally-denied').style.display = 'block';
+    window.scrollTo({top: document.getElementById('tally-denied').offsetTop - 100, behavior: 'smooth'});
+    if (typeof gtag !== 'undefined') gtag('event', 'form_disqualified', {'event_category': 'Form', 'event_label': 'investment_too_low'});
+  } else {
+    document.getElementById('tally-approved').style.display = 'block';
+    document.getElementById('booking').style.display = 'block';
+    window.scrollTo({top: document.getElementById('tally-approved').offsetTop - 100, behavior: 'smooth'});
+    if (typeof gtag !== 'undefined') gtag('event', 'form_qualified', {'event_category': 'Form', 'event_label': 'passed'});
+    if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+  }
+}
+
+window.addEventListener('message', function(e) {
+  if (!e.data || typeof e.data !== 'object') return;
+
+  var eventName = e.data.event || e.data.type || '';
+  var payload = e.data.payload || e.data.data || e.data || {};
+
+  // Tally fires several event names depending on version — catch all of them
+  var isTallySubmit = (
+    eventName === 'Tally.FormSubmitted' ||
+    eventName === 'TallyFormSubmitted' ||
+    eventName === 'form_submitted' ||
+    eventName === 'tally-form-submitted' ||
+    (payload.formId && (eventName.indexOf('submit') !== -1 || eventName.indexOf('Submit') !== -1))
+  );
+
+  if (isTallySubmit) {
+    var fields = payload.fields || payload.responses || payload.answers || [];
+    handleTallySubmission(fields);
   }
 });
 </script>
@@ -414,6 +453,19 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, {threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// URL param fallback for Tally redirect (in case postMessage doesn't fire)
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('qualified') === 'true') {
+    document.getElementById('tally-form-wrap').style.display = 'none';
+    document.getElementById('tally-approved').style.display = 'block';
+    document.getElementById('booking').style.display = 'block';
+  } else if (params.get('qualified') === 'false') {
+    document.getElementById('tally-form-wrap').style.display = 'none';
+    document.getElementById('tally-denied').style.display = 'block';
+  }
+})();
 
 document.querySelectorAll('.faq-q').forEach(btn => {
   btn.addEventListener('click', () => {
