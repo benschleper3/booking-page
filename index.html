@@ -174,31 +174,31 @@ footer a:hover{color:var(--amber);}
 
 
 /* QUALIFY FORM */
-.qualify-section{max-width:600px;margin:0 auto;padding:16px 24px 60px;}
-.qform-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
-.qprogress-wrap{height:3px;background:var(--bg4);}
+.qualify-section{max-width:620px;margin:0 auto;padding:64px 24px 72px;}
+.qform-card{background:var(--bg3);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 0 40px rgba(0,0,0,0.3);}
+.qprogress-wrap{height:4px;background:var(--bg4);}
 .qprogress-bar{height:100%;background:var(--amber);width:0;transition:width 0.4s ease;}
-.qstep-label{font-size:11px;color:var(--text-dimmer);padding:12px 28px 0;letter-spacing:1px;}
-.qstep{display:none;padding:24px 28px 32px;animation:qfadeIn 0.26s ease;}
+.qstep-label{font-size:11px;color:var(--text-dimmer);padding:16px 32px 0;letter-spacing:1.5px;text-transform:uppercase;}
+.qstep{display:none;padding:28px 32px 36px;animation:qfadeIn 0.26s ease;}
 .qstep.active{display:block;}
 .qstep.qexit{animation:qfadeOut 0.26s ease;display:block;}
 @keyframes qfadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
 @keyframes qfadeOut{from{opacity:1;}to{opacity:0;}}
-.qquestion{font-size:18px;font-weight:500;color:var(--text);line-height:1.45;margin-bottom:6px;}
-.qsub{font-size:13px;color:var(--text-dimmer);margin-bottom:16px;margin-top:4px;}
-.qinput{width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:10px;padding:14px 16px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;outline:none;margin-top:18px;transition:border-color 0.15s;}
+.qquestion{font-size:19px;font-weight:500;color:var(--text);line-height:1.45;margin-bottom:6px;}
+.qsub{font-size:13px;color:var(--text-dimmer);margin-bottom:16px;margin-top:6px;}
+.qinput{width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:10px;padding:15px 18px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;outline:none;margin-top:20px;transition:border-color 0.15s;}
 .qinput:focus{border-color:var(--amber-border);}
 .qinput.qerror{border-color:#EF4444;}
-.qnext{margin-top:16px;background:var(--amber);color:#000;font-weight:700;font-size:15px;padding:13px 28px;border:none;border-radius:9px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s;}
+.qnext{margin-top:18px;background:var(--amber);color:#000;font-weight:700;font-size:15px;padding:14px 32px;border:none;border-radius:9px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s;}
 .qnext:hover{background:var(--amber-dim);}
-.qoptions{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
-.qopt{background:var(--bg4);border:1px solid var(--border);border-radius:10px;padding:13px 16px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text-dim);cursor:pointer;transition:all 0.15s;line-height:1.5;}
+.qoptions{display:flex;flex-direction:column;gap:10px;margin-top:22px;}
+.qopt{background:var(--bg4);border:1px solid var(--border);border-radius:12px;padding:15px 18px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text-dim);cursor:pointer;transition:all 0.15s;line-height:1.55;}
 .qopt:hover,.qopt.selected{border-color:var(--amber-border);color:var(--text);background:var(--amber-glow);}
 .qopt.qdisqualify:hover,.qopt.qdisqualify.selected{border-color:var(--border);color:var(--text-dim);background:var(--bg4);}
-.qsaving{display:flex;flex-direction:column;align-items:center;gap:16px;padding:20px 0;color:var(--text-dim);font-size:14px;}
-.qspinner{width:28px;height:28px;border:2px solid var(--border);border-top-color:var(--amber);border-radius:50%;animation:qspin 0.7s linear infinite;}
+.qsaving{display:flex;flex-direction:column;align-items:center;gap:16px;padding:32px 0;color:var(--text-dim);font-size:14px;}
+.qspinner{width:30px;height:30px;border:2px solid var(--border);border-top-color:var(--amber);border-radius:50%;animation:qspin 0.7s linear infinite;}
 @keyframes qspin{to{transform:rotate(360deg);}}
-.qualify-check{width:52px;height:52px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-size:22px;color:#000;margin:0 auto 16px;font-weight:700;}
+.qualify-check{width:56px;height:56px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-size:24px;color:#000;margin:0 auto 18px;font-weight:700;}
 </style>
 </head>
 <body>
