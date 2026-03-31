@@ -46,7 +46,7 @@ src="https://www.facebook.com/tr?id=823154213453673&ev=PageView&noscript=1"/></n
   --text:#F0F0F0;--text-dim:#999;--text-dimmer:#555;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;background:#080808;}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;}
 
 nav{position:sticky;top:0;z-index:100;padding:14px 32px;display:flex;align-items:center;justify-content:center;background:rgba(8,8,8,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
@@ -75,7 +75,7 @@ nav{position:sticky;top:0;z-index:100;padding:14px 32px;display:flex;align-items
 
 .divider{max-width:600px;margin:0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);}
 
-.what{max-width:820px;margin:0 auto;padding:64px 24px;}
+.what{max-width:820px;margin:0 auto;padding:64px 24px;background:var(--bg);}
 .section-label{font-size:11px;font-weight:600;letter-spacing:3px;color:var(--amber);text-transform:uppercase;margin-bottom:14px;text-align:center;}
 .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,4.5vw,50px);line-height:1.0;letter-spacing:1px;margin-bottom:16px;text-align:center;}
 .section-body{color:var(--text-dim);max-width:540px;margin:0 auto 44px;line-height:1.8;font-size:15px;text-align:center;}
@@ -173,8 +173,21 @@ footer a:hover{color:var(--amber);}
 
 
 
-/* QUALIFY FORM */
-.qualify-section{max-width:620px;margin:0 auto;padding:96px 24px 72px;}
+/* CAROUSEL */
+.carousel-wrap{position:relative;max-width:360px;margin:40px auto 0;display:flex;flex-direction:column;align-items:center;gap:16px;}
+.carousel-track-wrap{width:100%;overflow:hidden;border-radius:16px;}
+.carousel-track{display:flex;transition:transform 0.4s ease;}
+.carousel-slide{min-width:100%;flex-shrink:0;}
+.carousel-slide img{width:100%;height:auto;display:block;border-radius:16px;object-fit:cover;}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-60%);background:rgba(255,255,255,0.08);border:1px solid var(--border);color:var(--text);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;z-index:2;}
+.carousel-btn:hover{background:var(--amber);color:#000;border-color:var(--amber);}
+.carousel-prev{left:-18px;}
+.carousel-next{right:-18px;}
+.carousel-dots{display:flex;gap:6px;margin-top:4px;}
+.carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--border);border:none;cursor:pointer;padding:0;transition:all 0.2s;}
+.carousel-dot.active{background:var(--amber);width:18px;border-radius:3px;}
+
+.qualify-section{max-width:620px;margin:0 auto;padding:96px 24px 72px;background:var(--bg);}
 .qform-card{background:var(--bg3);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 0 40px rgba(0,0,0,0.3);}
 .qprogress-wrap{height:4px;background:var(--bg4);}
 .qprogress-bar{height:100%;background:var(--amber);width:0;transition:width 0.4s ease;}
@@ -488,8 +501,49 @@ function showDone() {
       <div class="dm-bubble-only">I was doing this on my own for 2 months getting nowhere. Jake just showed me what I was doing wrong and it clicked</div>
       <div class="dm-bubble-only">Just got my second brand deal this week. Didn&#39;t think it would happen this fast lol thank you</div>
     </div>
+
+    <!-- Proof image carousel -->
+    <div class="carousel-wrap">
+      <button class="carousel-btn carousel-prev" onclick="carouselMove(-1)" aria-label="Previous">&#8592;</button>
+      <div class="carousel-track-wrap">
+        <div class="carousel-track" id="carousel-track">
+          <div class="carousel-slide"><img src="proof1.jpeg" alt="Student result" /></div>
+          <div class="carousel-slide"><img src="proof2.jpeg" alt="Student result" /></div>
+          <div class="carousel-slide"><img src="proof3.jpeg" alt="Student result" /></div>
+          <div class="carousel-slide"><img src="proof4.jpeg" alt="Student result" /></div>
+        </div>
+      </div>
+      <button class="carousel-btn carousel-next" onclick="carouselMove(1)" aria-label="Next">&#8594;</button>
+      <div class="carousel-dots" id="carousel-dots"></div>
+    </div>
+
   </div>
 </section>
+
+<script>
+var carouselIndex = 0;
+var carouselTotal = 4;
+
+function carouselMove(dir) {
+  carouselIndex = (carouselIndex + dir + carouselTotal) % carouselTotal;
+  document.getElementById('carousel-track').style.transform = 'translateX(-' + (carouselIndex * 100) + '%)';
+  document.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+    d.classList.toggle('active', i === carouselIndex);
+  });
+}
+
+// Build dots
+(function() {
+  var dots = document.getElementById('carousel-dots');
+  for (var i = 0; i < carouselTotal; i++) {
+    var d = document.createElement('button');
+    d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('data-i', i);
+    d.onclick = (function(idx) { return function() { carouselIndex = idx - 1; carouselMove(1); }; })(i);
+    dots.appendChild(d);
+  }
+})();
+</script>
 
 <section id="booking" style="display:none;">
   <div class="booking-outer reveal">
