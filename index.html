@@ -262,101 +262,108 @@ margin:0 auto;padding:24px 24px 72px;background:var(--bg);}
         <button class="qnext" onclick="goNext(1)">Continue &rarr;</button>
       </div>
 
-      <!-- Q2 -->
+      <!-- Q2 — Instagram -->
       <div class="qstep" id="qs2">
-        <h3 class="qquestion">Be honest... which one sounds most like you right now?</h3>
-        <div class="qoptions">
-          <button class="qopt" onclick="pick('situation','I keep watching content but have not started anything');goNext(2)">I keep watching content but haven't started anything</button>
-          <button class="qopt" onclick="pick('situation','I have tried a few things but nothing worked');goNext(2)">I've tried a few things but nothing worked</button>
-          <button class="qopt" onclick="pick('situation','I want to make money online but do not know what to choose');goNext(2)">I want to make money online but don't know what to choose</button>
-          <button class="qopt" onclick="pick('situation','I feel like I am behind and everyone else is figuring it out');goNext(2)">I feel like I'm behind and everyone else is figuring it out</button>
-        </div>
+        <h3 class="qquestion">What is your Instagram handle?</h3>
+        <input class="qinput" id="q-instagram" type="text" placeholder="@yourhandle" autocomplete="off" />
+        <button class="qnext" onclick="goNext(2)">Continue &rarr;</button>
       </div>
 
       <!-- Q3 -->
       <div class="qstep" id="qs3">
+        <h3 class="qquestion">Be honest... which one sounds most like you right now?</h3>
+        <div class="qoptions">
+          <button class="qopt" onclick="pick('situation','I keep watching content but have not started anything');goNext(3)">I keep watching content but haven't started anything</button>
+          <button class="qopt" onclick="pick('situation','I have tried a few things but nothing worked');goNext(3)">I've tried a few things but nothing worked</button>
+          <button class="qopt" onclick="pick('situation','I want to make money online but do not know what to choose');goNext(3)">I want to make money online but don't know what to choose</button>
+          <button class="qopt" onclick="pick('situation','I feel like I am behind and everyone else is figuring it out');goNext(3)">I feel like I'm behind and everyone else is figuring it out</button>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="qstep" id="qs4">
         <h3 class="qquestion">How long have you been stuck in this cycle?</h3>
         <div class="qoptions">
-          <button class="qopt" onclick="pick('time_stuck','A few weeks');goNext(3)">A few weeks</button>
-          <button class="qopt" onclick="pick('time_stuck','A few months');goNext(3)">A few months</button>
-          <button class="qopt" onclick="pick('time_stuck','6+ months');goNext(3)">6+ months</button>
-          <button class="qopt" onclick="pick('time_stuck','Over a year');goNext(3)">Over a year</button>
+          <button class="qopt" onclick="pick('time_stuck','A few weeks');goNext(4)">A few weeks</button>
+          <button class="qopt" onclick="pick('time_stuck','A few months');goNext(4)">A few months</button>
+          <button class="qopt" onclick="pick('time_stuck','6+ months');goNext(4)">6+ months</button>
+          <button class="qopt" onclick="pick('time_stuck','Over a year');goNext(4)">Over a year</button>
         </div>
       </div>
 
       <!-- Q4 -->
-      <div class="qstep" id="qs4">
+      <div class="qstep" id="qs5">
         <h3 class="qquestion">What frustrates you the most about your situation right now?</h3>
         <div class="qoptions">
-          <button class="qopt" onclick="pick('biggest_frustration','Watching others make money while I am stuck');goNext(4)">Watching others make money while I'm stuck</button>
-          <button class="qopt" onclick="pick('biggest_frustration','Not knowing what actually works');goNext(4)">Not knowing what actually works</button>
-          <button class="qopt" onclick="pick('biggest_frustration','Starting and quitting over and over');goNext(4)">Starting and quitting over and over</button>
-          <button class="qopt" onclick="pick('biggest_frustration','Feeling like I am wasting time');goNext(4)">Feeling like I'm wasting time</button>
+          <button class="qopt" onclick="pick('biggest_frustration','Watching others make money while I am stuck');goNext(5)">Watching others make money while I'm stuck</button>
+          <button class="qopt" onclick="pick('biggest_frustration','Not knowing what actually works');goNext(5)">Not knowing what actually works</button>
+          <button class="qopt" onclick="pick('biggest_frustration','Starting and quitting over and over');goNext(5)">Starting and quitting over and over</button>
+          <button class="qopt" onclick="pick('biggest_frustration','Feeling like I am wasting time');goNext(5)">Feeling like I'm wasting time</button>
         </div>
       </div>
 
       <!-- Q5 -->
-      <div class="qstep" id="qs5">
+      <div class="qstep" id="qs6">
         <h3 class="qquestion">If you could fix this in the next 30 to 60 days, what would that look like?</h3>
         <div class="qoptions">
-          <button class="qopt" onclick="pick('goal','Land my first paid deal');goNext(5)">Land my first paid deal</button>
-          <button class="qopt" onclick="pick('goal','Start making consistent income');goNext(5)">Start making consistent income</button>
-          <button class="qopt" onclick="pick('goal','Replace part of my income');goNext(5)">Replace part of my income</button>
-          <button class="qopt" onclick="pick('goal','Just knowing I am on the right track');goNext(5)">Just knowing I'm on the right track</button>
+          <button class="qopt" onclick="pick('goal','Land my first paid deal');goNext(6)">Land my first paid deal</button>
+          <button class="qopt" onclick="pick('goal','Start making consistent income');goNext(6)">Start making consistent income</button>
+          <button class="qopt" onclick="pick('goal','Replace part of my income');goNext(6)">Replace part of my income</button>
+          <button class="qopt" onclick="pick('goal','Just knowing I am on the right track');goNext(6)">Just knowing I'm on the right track</button>
         </div>
       </div>
 
       <!-- Q6 -->
-      <div class="qstep" id="qs6">
+      <div class="qstep" id="qs7">
         <h3 class="qquestion">Have you heard of UGC, getting paid to create content for brands?</h3>
         <div class="qoptions">
-          <button class="qopt" onclick="pick('ugc_awareness','Yes but not tried');goNext(6)">Yes, but haven't tried it</button>
-          <button class="qopt" onclick="pick('ugc_awareness','Looked into it confused');goNext(6)">I've looked into it but got confused</button>
-          <button class="qopt" onclick="pick('ugc_awareness','New to me');goNext(6)">No, this is new to me</button>
+          <button class="qopt" onclick="pick('ugc_awareness','Yes but not tried');goNext(7)">Yes, but haven't tried it</button>
+          <button class="qopt" onclick="pick('ugc_awareness','Looked into it confused');goNext(7)">I've looked into it but got confused</button>
+          <button class="qopt" onclick="pick('ugc_awareness','New to me');goNext(7)">No, this is new to me</button>
         </div>
       </div>
 
       <!-- Q7 -->
-      <div class="qstep" id="qs7">
+      <div class="qstep" id="qs8">
         <h3 class="qquestion">How much time can you realistically commit per week?</h3>
         <div class="qoptions">
-          <button class="qopt" onclick="pick('hours_per_week','1-3 hours');goNext(7)">1 to 3 hours</button>
-          <button class="qopt" onclick="pick('hours_per_week','3-5 hours');goNext(7)">3 to 5 hours</button>
-          <button class="qopt" onclick="pick('hours_per_week','5-10 hours');goNext(7)">5 to 10 hours</button>
-          <button class="qopt" onclick="pick('hours_per_week','10+ hours');goNext(7)">10+ hours</button>
+          <button class="qopt" onclick="pick('hours_per_week','1-3 hours');goNext(8)">1 to 3 hours</button>
+          <button class="qopt" onclick="pick('hours_per_week','3-5 hours');goNext(8)">3 to 5 hours</button>
+          <button class="qopt" onclick="pick('hours_per_week','5-10 hours');goNext(8)">5 to 10 hours</button>
+          <button class="qopt" onclick="pick('hours_per_week','10+ hours');goNext(8)">10+ hours</button>
         </div>
       </div>
 
       <!-- Q8 — DISQUALIFIER -->
-      <div class="qstep" id="qs8">
+      <div class="qstep" id="qs9">
         <h3 class="qquestion">If you found something that actually works, what would you realistically be able to invest to get started?</h3>
         <div class="qoptions">
-          <button class="qopt" onclick="pick('investment_range','$300-$700');setDisqualified(true);goNext(8)">$300 to $700</button>
-          <button class="qopt" onclick="pick('investment_range','$700-$1000');goNext(8)">$700 to $1,000</button>
-          <button class="qopt" onclick="pick('investment_range','Ready if it makes sense');goNext(8)">I'm ready if it makes sense</button>
-          <button class="qopt" onclick="pick('investment_range','Not ready to invest');goNext(8)">I'm not ready to invest right now</button>
+          <button class="qopt" onclick="pick('investment_range','$300-$700');setDisqualified(true);goNext(9)">$300 to $700</button>
+          <button class="qopt" onclick="pick('investment_range','$700-$1000');goNext(9)">$700 to $1,000</button>
+          <button class="qopt" onclick="pick('investment_range','Ready if it makes sense');goNext(9)">I'm ready if it makes sense</button>
+
         </div>
       </div>
 
       <!-- Q9 -->
-      <div class="qstep" id="qs9">
+      <div class="qstep" id="qs10">
         <h3 class="qquestion">If you knew this would work, are you ready to actually follow through?</h3>
         <div class="qoptions">
-          <button class="qopt" onclick="pick('follow_through','Yes done being stuck');goNext(9)">Yes, I'm done being stuck</button>
-          <button class="qopt" onclick="pick('follow_through','Maybe need to be sure');goNext(9)">Maybe, I just need to be sure</button>
-          <button class="qopt" onclick="pick('follow_through','Not right now');goNext(9)">Not right now</button>
+          <button class="qopt" onclick="pick('follow_through','Yes done being stuck');goNext(10)">Yes, I'm done being stuck</button>
+          <button class="qopt" onclick="pick('follow_through','Maybe need to be sure');goNext(10)">Maybe, I just need to be sure</button>
+          <button class="qopt" onclick="pick('follow_through','Not right now');goNext(10)">Not right now</button>
         </div>
       </div>
 
       <!-- Q10 — Email -->
-      <div class="qstep" id="qs10">
+      <div class="qstep" id="qs11">
         <h3 class="qquestion">Best email to send you details?</h3>
         <input class="qinput" id="q-email" type="email" placeholder="you@email.com" autocomplete="email" />
-        <button class="qnext" onclick="goNext(10)">Continue &rarr;</button>
+        <button class="qnext" onclick="goNext(11)">Continue &rarr;</button>
       </div>
 
       <!-- Q11 — Timezone -->
-      <div class="qstep" id="qs11">
+      <div class="qstep" id="qs-saving">
         <h3 class="qquestion">What timezone are you in?</h3>
         <input class="qinput" id="q-timezone" type="text" placeholder="e.g. EST, PST, CST" autocomplete="off" />
         <button class="qnext" onclick="submitForm()">Submit &rarr;</button>
@@ -383,7 +390,7 @@ margin:0 auto;padding:24px 24px 72px;background:var(--bg);}
 <script>
 var qAnswers = {};
 var qDisqualified = false;
-var qTotal = 11;
+var qTotal = 12;
 
 function pick(key, val) { qAnswers[key] = val; }
 function setDisqualified(v) { qDisqualified = v; }
@@ -395,7 +402,13 @@ function goNext(from) {
     document.getElementById('q-name').classList.remove('qerror');
     qAnswers['name'] = name;
   }
-  if (from === 10) {
+  if (from === 2) {
+    var ig = document.getElementById('q-instagram').value.trim();
+    if (!ig) { document.getElementById('q-instagram').classList.add('qerror'); return; }
+    document.getElementById('q-instagram').classList.remove('qerror');
+    qAnswers['instagram'] = ig;
+  }
+  if (from === 11) {
     var email = document.getElementById('q-email').value.trim();
     if (!email || email.indexOf('@') === -1) {
       document.getElementById('q-email').classList.add('qerror');
@@ -422,23 +435,24 @@ function submitForm() {
   var tz = document.getElementById('q-timezone').value.trim();
   qAnswers['timezone'] = tz;
 
-  document.getElementById('qs11').classList.remove('active');
+  document.getElementById('qs12').classList.remove('active');
   document.getElementById('qs-saving').classList.add('active');
   document.getElementById('qbar').style.width = '100%';
 
   var payload = {
-    firstName: qAnswers['name'] || '',
+    first_name: qAnswers['name'] || '',
     email: qAnswers['email'] || '',
+    instagram: qAnswers['instagram'] || '',
     situation: qAnswers['situation'] || '',
-    timeStuck: qAnswers['time_stuck'] || '',
-    biggestFrustration: qAnswers['biggest_frustration'] || '',
+    time_stuck: qAnswers['time_stuck'] || '',
+    biggest_frustration: qAnswers['biggest_frustration'] || '',
     goal: qAnswers['goal'] || '',
-    ugcAwareness: qAnswers['ugc_awareness'] || '',
-    hoursPerWeek: qAnswers['hours_per_week'] || '',
-    investmentRange: qAnswers['investment_range'] || '',
-    followThrough: qAnswers['follow_through'] || '',
+    ugc_awareness: qAnswers['ugc_awareness'] || '',
+    hours_per_week: qAnswers['hours_per_week'] || '',
+    investment_range: qAnswers['investment_range'] || '',
+    follow_through: qAnswers['follow_through'] || '',
     timezone: qAnswers['timezone'] || '',
-    applicationResult: qDisqualified ? 'Disqualified' : 'Qualified'
+    application_result: qDisqualified ? 'Disqualified' : 'Qualified'
   };
 
   // Send to GHL webhook
